@@ -1,4 +1,5 @@
 import './App.css';
+import Form from './components/Form';
 import Graph from './components/Graph';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
           <Graph/>
           
           {/* form */}
+          <Form />
         </div>
       </div>
     </div>
