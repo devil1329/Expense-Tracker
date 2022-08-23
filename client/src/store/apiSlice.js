@@ -16,29 +16,29 @@ export const apiSlice = createApi({
         getLabels : builder.query({
             // get: 'http://localhost:8080/api/labels'
             query : () => '/api/labels',
-            providesTags: ['transaction']
+            providesTags: ['transactions']
         }),
 
         // add new Transaction
         addTransaction : builder.mutation({
             query : (initialTransaction) => ({
                   // post: 'http://localhost:8080/api/transaction'
-                url: '/api/transaction',
+                url: '/api/transactions',
                 method: "POST",
                 body: initialTransaction
             }),
-            invalidatesTags: ['transaction']
+            invalidatesTags: ['transactions']
         }),
 
         // delete record
         deleteTransaction : builder.mutation({
             query : recordId => ({
                 // delete: 'http://localhost:8080/api/transaction'
-                url : '/api/transaction',
+                url : '/api/transactions',
                 method : "DELETE",
                 body : recordId
             }),
-            invalidatesTags: ['transaction']
+            invalidatesTags: ['transactions']
         })
 
     })
