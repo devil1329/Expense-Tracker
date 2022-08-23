@@ -1,45 +1,46 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react' 
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const baseURI = 'http://localhost:8080'
+const baseURI = 'http://localhost:8080';
 
 export const apiSlice = createApi({
-    baseQuery : fetchBaseQuery({ baseUrl : baseURI }),
-    endponts : builder => ({
-        // get categories 
+    baseQuery : fetchBaseQuery({ baseUrl : baseURI}),
+    endpoints : builder => ({
+        // get categories
         getCategories : builder.query({
-            // for get http://localhost:8080/api/categories 
-            query : () => '/api/categories',
-            providesTags : ['categories']
+            // get: 'http://localhost:8080/api/categories'
+            query: () => '/api/categories',
+            providesTags: ['categories']
         }),
 
-        // get labels 
+        // get labels
         getLabels : builder.query({
-            // for get http://localhost:8080/api/labels
+            // get: 'http://localhost:8080/api/labels'
             query : () => '/api/labels',
-            providesTags : ['transactions']
+            providesTags: ['transaction']
         }),
 
-        // add new Transaction 
+        // add new Transaction
         addTransaction : builder.mutation({
-            query : (record) => ({
-                // for post http://localhost:8080/api/transactions 
-                url: '/api/transactions',
-                method : "POST",
-                body : record // used to get the transaction data from the  page,
+            query : (initialTransaction) => ({
+                  // post: 'http://localhost:8080/api/transaction'
+                url: '/api/transaction',
+                method: "POST",
+                body: initialTransaction
             }),
-            invalidatesTags : ['transactions'] 
+            invalidatesTags: ['transaction']
         }),
 
         // delete record
         deleteTransaction : builder.mutation({
-            query : recordID => ({
-                // for delete http://localhost:8080/api/transactions 
-                url: '/api/transactions',
+            query : recordId => ({
+                // delete: 'http://localhost:8080/api/transaction'
+                url : '/api/transaction',
                 method : "DELETE",
-                body : recordID // used to get the transaction data from the  page
+                body : recordId
             }),
-            invalidatesTags : ['transactions'] 
+            invalidatesTags: ['transaction']
         })
+
     })
 })
 
