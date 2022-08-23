@@ -3,7 +3,10 @@ const app = express();
 const cors = require('cors');
 const routes = require('./routes/route');
 
-const port = 5000;
+// this is to include env file into the server file 
+// it is to take the important data that is not available to all 
+require('dotenv').config({path : "./config.env"})
+const port = process.env.PORT || 5000;
 
 //use middlewares
 app.use(cors());
